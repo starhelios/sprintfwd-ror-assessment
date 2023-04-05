@@ -1,0 +1,24 @@
+<div class="container">
+  <h1>Teams</h1>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @teams.each do |team| %>
+        <tr>
+          <td><%= team.name %></td>
+          <td><%= link_to 'Show', team_path(team), class: 'btn btn-primary' %></td>
+          <td><%= link_to 'Edit', edit_team_path(team), class: 'btn btn-secondary' %></td>
+          <td><%= button_to 'Destroy', team_path(team), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= link_to 'New Team', new_team_path, class: 'btn btn-success' %>
+</div>

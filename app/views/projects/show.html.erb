@@ -1,0 +1,35 @@
+<div class="container">
+  <h1><%= @project.name %></h1>
+  <%= form_with(url: add_to_project_project_path(@project), method: :patch, local: true) do |form| %>
+      <div class="form-group">
+        <%= form.label :member_id, "Member" %>
+        <%= form.collection_select :member_id, @members, :id, :full_name, { prompt: "Select a member" }, { class: 'form-control' } %>
+      </div>
+      <%= form.submit 'Add to project', class: 'btn btn-primary my-3' %>
+  <% end %>
+
+  <% if @project.members.present? %>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Project Members</th>
+          <th>Team</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @project.members.each do |member| %>
+          <tr>
+            <td><%= link_to member.full_name, member_path(member) %></td>
+            <td><%= link_to member.team.name, team_path(member.team) %></td>
+            <td>
+              <%= button_to 'Remove from project', remove_to_project_project_path(id: params[:id], member_id: member.id), method: 'patch',class: 'btn btn-danger' %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+  <%= link_to 'Edit', edit_project_path(@project), class: 'btn btn-secondary' %>
+  <%= link_to 'Back', projects_path, class: 'btn btn-primary' %>
+</div>

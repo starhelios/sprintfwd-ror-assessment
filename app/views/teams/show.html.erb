@@ -1,0 +1,21 @@
+<div class="container">
+  <h1><%= @team.name %></h1>
+  <% if @team.members.present? %>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Members</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @team.members.each do |member| %>
+          <tr>
+            <td><%= link_to member.full_name, member_path(member) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>  
+  <%= link_to 'Edit', edit_team_path(@team), class: 'btn btn-secondary' %>
+  <%= link_to 'Back', teams_path, class: 'btn btn-primary' %>
+</div>

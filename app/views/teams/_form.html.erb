@@ -1,0 +1,10 @@
+<%= form_with(model: @team, local: true) do |form| %>
+    <div class="form-group">
+      <%= form.label :name %>
+      <%= form.text_field :name, class: 'form-control' %>
+    </div>
+    <div clsss="d-flex">
+      <%= form.submit action, class: 'btn btn-primary mt-3' %>
+      <%= link_to 'Back', teams_path, class: 'btn btn-secondary mt-3' %>
+     </div>
+  <% end %>
